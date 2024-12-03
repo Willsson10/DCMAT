@@ -1,0 +1,13 @@
+set erase off;
+plot sen(x)
+plot cos(x)
+set erase on;
+set erase off;
+plot sen(x)
+plot cos(x)
+set erase on;
+set erase off;
+plot sen(x)
+plot cos(x)
+set erase on;
+quit

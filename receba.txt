@@ -1,0 +1,639 @@
+show settings;
+reset settings;
+a:=[[19283912839128,12],[312,3]];
+a:=[[1,2,3,4,5,6,7,8,9,10],[1],[1],[1],[1],[1],[1],[1],[1],[1]];
+a:=[[1,2,3,4,5,6,7,8,9,10],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1]];
+set h_view -10.5:7.2;
+set v_view -5:+10.2;
+set axis on;
+plot;
+plot(sen(x));
+set axis off;
+plot(sen(x));
+plot(sen(x));
+plot(cos(x));
+plot(sen(x+(2*pi)/2));
+;
+rpn(sen(x)*(1+x)+chuchu*pi);
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+solve determinant;
+minha_variavel := 123456;
+minha_variavel := 666;
+a := 222;
+b := 3*a;
+a:=222;
+b :=3*a;
+b := a+b+c+d;
+amplitude := 3;
+integrate(0:3.14,amplitude*sen(x));
+sum(n,0:10, n * amplitude);
+rpn(amplitude * sen(x) + x);
+plot(amplitude*sen(x));
+sum(n,0:10,n*abobrinha);
+rpn(n*abobrinha);
+minha_matriz := [[1,2],[3,4,5],[6]];
+amplitude;
+minha_matriz;
+d;
+1+3*5
+a:=2;
+b:=4;
+a+b*pi
+pi
+a+b+c
+abs(-666);
+integrate(0:3.14,amplitude*sen(x));
+sum(n,0:10, n * amplitude);
+rpn(amplitude * sen(x) + x);
+plot(amplitude*sen(x));
+sum(n,0:10,n*abobrinha);
+rpn(n*abobrinha);
+minha_matriz := [[1,2],[3,4,5],[6]];
+amplitude;
+minha_matriz;
+d;
+1+3*5
+set axis on;
+a:=2;
+d := a+b;
+show symbols;
+d := Pi;
+show symbols;
+a:=666;
+a:=[[1,1]];
+a:=Pi;
+a:=[[1,2],[3,4]];
+a := 3.45;
+a;
+set float precision 0;
+a;
+b := [[1,2,3],[4,5,6],[7,8,9]];
+show settings;
+set float precision -1;
+set float precision 9;
+show settings;
+reset settings;
+b*a
+a:=[[1,1]];
+a*666
+666*a
+-a
+a := [[1,1]];
+b := [[2,2]];
+abs(-666);
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+a+b
+a-b
+a:= [[1,1]];
+
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+;
+a+b+c
+abs(-666);
+set axis off;
+plot;
+set axis on;
+plot(sen(x));
+set axis off;
+plot(sen(x));
+plot(sen(x));
+
+plot(cos(x));
+plot(sen(x+(2*pi)/2));
+;
+set float precision 3;
+rpn(sen(x)*(1+x)+chuchu*pi);
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+solve determinant;
+minha_variavel := 123456;
+minha_variavel := 666;
+a := 222;
+b := 3*a;
+a:=222;
+b :=3*a;
+b := a+b+c+d;
+show settings;
+reset settings;
+set h_view -10.5:7.2;
+set v_view -5:+10.2;
+set axis on;
+plot;
+plot(sen(x));
+set axis on;
+set axis off;
+plot(sen(x));
+plot(sen(x));
+
+b:=[[2,2,2]];
+a+b
+a-b
+a := [[1,1]];
+b := [[2,2]];
+c := [[1,2,3]];
+set float precision 5;
+a+b-c
+a:=[[1]];
+a+b
+a-b
+a := [[1,1]];
+b := [[2,2]];
+c := [[1,2,3]];
+a+b-c
+a:=[[1]];
+b:=[[2,2]];
+c:=[[3,3,3]];
+a+b+c
+a := [[1,2]];
+plot(x);
+
+
+plot(sen(x));
+plot(x);
+
+
+
+set axis on;
+
+plot(sen(x));
+show symbols;
+d := Pi;
+show symbols;
+a:=666;
+a:=[[1,1]];
+a:=Pi;
+a:=[[1,2],[3,4]];
+a := 3.45;
+a;
+set float precision 4;
+a;
+a*666
+666*a
+-a
+a := [[1,1]];
+b := [[2,2]];
+minha_variavel := 123456;
+minha_variavel := 666;
+a := 222;
+b := 3*a;
+a:=222;
+b :=3*a;
+b := a+b+c+d;
+amplitude := 3;
+integrate(0:3.14,amplitude*sen(x));
+sum(n,0:10, n * amplitude);
+rpn(amplitude * sen(x) + x);
+plot(amplitude*sen(x));
+sum(n,0:10,n*abobrinha);
+rpn(n*abobrinha);
+minha_matriz := [[1,2],[3,4,5],[6]];
+amplitude;
+minha_matriz;
+d;
+1+3*5
+a:=2;
+b:=4;
+a+b*pi
+pi
+a+b+c
+abs(-666);
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+a+b
+a-b
+a:= [[1,1]];
+b:=[[2,2,2]];
+a+b
+a-b
+a := [[1,1]];
+b := [[2,2]];
+c := [[1,2,3]];
+set float precision 6;
+a+b-c
+a:=[[1]];
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+amplitude := 3;
+integrate(0:3.14,amplitude*sen(x));
+sum(n,0:10, n * amplitude);
+rpn(amplitude * sen(x) + x);
+plot(amplitude*sen(x));
+sum(n,0:10,n*abobrinha);
+rpn(n*abobrinha);
+minha_matriz := [[1,2],[3,4,5],[6]];
+amplitude;
+minha_matriz;
+d;
+1+3*5
+a:=2;
+b:=4;
+a+b*pi
+pi
+a+b+c
+abs(-666);
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+a+b
+a-b
+a:= [[1,1]];
+b:=[[2,2,2]];
+a+b
+set axis off;
+a-b
+a := [[1,1]];
+b := [[2,2]];
+c := [[1,2,3]];
+a+b-c
+a:=[[1]];
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+solve determinant;
+c:=[[3,3,3]];
+a+b+c
+a := [[1,2]];
+set float precision 8;
+plot(x);
+
+
+plot(sen(x));
+plot(x);
+
+
+
+
+plot(sen(x));
+show symbols;
+d := Pi;
+show symbols;
+a:=666;
+a:=[[1,1]];
+a:=Pi;
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+solve determinant;
+a:=[[1,1]];
+a:=Pi;
+
+plot(sen(x));
+plot(sen(x));
+plot(sen(x));
+a*666
+666*a
+abs(-666);
+a/(-45+45)
+set axis on;
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+a+b
+a-b
+a:= [[1,1]];
+
+a/(-45+45)
+x+5
+set float precision 6;
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+;
+a+b+c
+abs(-666);
+
+
+
+plot(sen(x));
+show symbols;
+d := Pi;
+show symbols;
+a:=666;
+a:=[[1,1]];
+a:=Pi;
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+a+b-c
+
+plot(sen(x));
+plot(x);
+
+
+
+
+plot(sen(x));
+show symbols;
+d := Pi;
+show symbols;
+a:=666;
+a:=[[1,1]];
+set axis off;
+a:=Pi;
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+plot(sen(x));
+plot(sen(x+(2*pi)/2));
+;
+
+plot(sen(x));
+plot(x);
+
+
+
+set float precision 2;
+
+plot(sen(x));
+show symbols;
+d := Pi;
+show symbols;
+a:=666;
+a:=[[1,1]];
+a:=Pi;
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+abs(-666);
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+
+plot(sen(x));
+plot(x);
+
+
+
+
+plot(sen(x));
+show symbols;
+d := Pi;
+set axis on;
+show symbols;
+a:=666;
+a:=[[1,1]];
+set float precision 5;
+a:=Pi;
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+abs(-666);
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+;
+a+b+c
+abs(-666);
+a/(-45+45)
+x+5
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+solve determinant;
+c:=[[3,3,3]];
+a+b+c
+a := [[1,2]];
+plot(x);
+
+
+plot(sen(x));
+plot(x);
+
+
+
+
+plot(sen(x));
+show symbols;
+d := Pi;
+set float precision 2;
+show symbols;
+a:=666;
+a:=[[1,1]];
+a:=Pi;
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+solve determinant;
+a:=[[1,1]];
+a:=Pi;
+
+plot(sen(x));
+plot(sen(x));
+plot(sen(x));
+a*666
+666*a
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+solve determinant;
+a:=[[1,1]];
+a:=Pi;
+
+
+
+plot(sen(x));
+show symbols;
+d := Pi;
+show symbols;
+a:=666;
+a:=[[1,1]];
+a:=Pi;
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+a+b-c
+
+plot(sen(x));
+plot(x);
+
+set axis off;
+
+
+
+plot(sen(x));
+show symbols;
+d := Pi;
+show symbols;
+a:=666;
+a:=[[1,1]];
+a:=Pi;
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+plot(sen(x));
+plot(sen(x+(2*pi)/2));
+;
+
+plot(sen(x));
+plot(x);
+
+
+
+
+plot(sen(x));
+show symbols;
+d := Pi;
+show symbols;
+a:=666;
+a:=[[1,1]];
+a:=Pi;
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+abs(-666);
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+
+plot(sen(x));
+plot(x);
+
+
+
+
+plot(sen(x));
+show symbols;
+set float precision 0;
+d := Pi;
+show symbols;
+a:=666;
+a:=[[1,1]];
+a:=Pi;
+set integral_steps 350;
+integrate(0:6.28,sen(x));
+sum(i,1:37,i-1);
+matrix = [[1]];
+matrix = [ [1,2], [3,4,5], [6] ];
+show matrix;
+matrix = [[-1,2],[3,-4]];
+show matrix;
+matrix = [[10,2,1],[1,5,1],[2,3,10]];
+abs(-666);
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+;
+a+b+c
+abs(-666);
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+a+b
+a-b
+a:= [[1,1]];
+set axis on;
+
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+set float precision 10;
+set float precision 3;
+;
+a+b+c
+abs(-666);
+a/(-45+45)
+x+5
+a := [[1,1],[1,1]];
+b := [[2,2],[2,2]];
+a+b
+a-b
+a:= [[1,1]];
+
+
+plot(sen(x));
+quit
