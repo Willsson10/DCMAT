@@ -100,16 +100,16 @@ Result* eval(AST_NODE *node) {
     else if(node->type == TYPE_VAR){
         AST_VAR* var_node = (AST_VAR*)node;
         if(var_node->var_type == 0){
-            if(get_variable_number(var_node->nome,&resultado->data.value))resultado->type = TYPE_NUM;
-            else printf("1Variável não definida");
+            if(getNumber(var_node->nome,&resultado->data.value))resultado->type = TYPE_NUM;
+            else printf("Variável não definida\n");
         }
         else if(var_node->var_type == 1){
             Matrix* aux = NULL;
-            if(get_variable_matrix(var_node->nome,&aux)){
+            if(getMatrix(var_node->nome,&aux)){
                 resultado->type = TYPE_MAT;
                 resultado->data.matrix = copiaMatriz(aux);
             }
-            else printf("2Variável não definida");
+            else printf("Variável não definida\n");
         }
     }
     return resultado;

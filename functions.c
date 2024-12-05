@@ -300,51 +300,50 @@ void plot_func(AST_NODE* func) {
 }
 
 
-
 double integrate(double lower, double upper, AST_NODE* func) {
     if (!func) {
         printf("Erro: Função inválida.\n");
         return 0.0;
     }
 
-    if (integral_steps % 2 != 0) {
-        printf("Erro: O número de subintervalos deve ser par.\n");
+    if (integral_steps <= 0) {
+        printf("Erro: O número de subintervalos deve ser maior que zero.\n");
         exit(1);
     }
 
-    double h = (upper - lower) / integral_steps; // Largura de cada subintervalo
+    double h = (upper - lower) / integral_steps;  // Largura de cada subintervalo
     double integral = 0.0;
 
-    // Soma os extremos da integral
-    change_X_value(lower);
-    Result* res_lower = eval(func);
-    integral += res_lower->data.value;
-    freeResult(res_lower);
+    // Ajuste para a soma de Riemann à esquerda ou direita
+    if (upper < lower) {
+        // Ajuste direção da soma (limites invertidos)
+        for (int i = 0; i < integral_steps; i++) {
+            double x = upper + (i * h);  // Ponto no intervalo, ajustado para a direção
+            change_X_value(x);
 
-    change_X_value(upper);
-    Result* res_upper = eval(func);
-    integral += res_upper->data.value;
-    freeResult(res_upper);
-
-    // Soma os valores nos pontos intermediários
-    for (int i = 1; i < integral_steps; i++) {
-        double x = lower + i * h;
-        change_X_value(x);
-
-        Result* res = eval(func);
-
-        if (i % 2 == 0) {
-            integral += 2 * res->data.value; // Multiplica por 2 (pontos pares)
-        } else {
-            integral += 4 * res->data.value; // Multiplica por 4 (pontos ímpares)
+            Result* res = eval(func);
+            integral -= res->data.value;  // Subtrai para ajustar a direção da soma
+            freeResult(res);
         }
-        freeResult(res);
+    } else {
+        // Soma de Riemann à esquerda
+        for (int i = 0; i < integral_steps; i++) {
+            double x = lower + (i * h);  // Ponto à esquerda de cada subintervalo
+            change_X_value(x);
+
+            Result* res = eval(func);
+            integral += res->data.value;  // Soma os valores da função
+            freeResult(res);
+        }
     }
 
-    integral *= (h / 3.0); // Aplica o fator final do método de Simpson
+    integral *= h;  // Multiplica pela largura do subintervalo (base dos retângulos)
+
+    // Imprimir o valor da integral para verificar
 
     return integral;
 }
+
 
 double sum_func(const char* variable, int lower, int upper, AST_NODE* expr) {
     if (!expr) {
@@ -355,7 +354,7 @@ double sum_func(const char* variable, int lower, int upper, AST_NODE* expr) {
     double sum = 0.0;
     // Itera sobre os valores do intervalo
     for (int i = lower; i <= upper; i++) {
-        set_variable_number(variable, i); // Define o valor da variável de iteração
+        setNumber(variable, i); // Define o valor da variável de iteração
 
         Result* result = eval(expr); // Avalia a expressão
         if (result->type != TYPE_NUM) {
@@ -379,3 +378,4 @@ void about () {
     printf("|                                              |\n");
     printf("+----------------------------------------------+\n");
 }
+

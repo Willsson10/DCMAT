@@ -3,8 +3,7 @@
 extern int yyparse();
 
 int main() {
-    printf("Calculadora\n> ");
-
+    printf("> ");
     yyparse();
 
     return 0;

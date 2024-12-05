@@ -15,42 +15,41 @@ unsigned int hash(const char *name) {
 }
 
 
-void set_variable_number(const char *name, double value) {
-    unsigned int index = hash(name);
+void setNumber (const char *nome, double valor) {
+    unsigned int index = hash(nome);
     Variable *var = symbol_table[index];
 
-    // Procura a variável na lista encadeada
+    // Confere se a variavel existe, e atualiza seu valor
     while (var != NULL) {
-        if (strcmp(var->name, name) == 0) {
+        if (strcmp(var->name, nome) == 0) {
             if(var->type == TYPE_MATRIX){
-                printf("Variavel era matriz\n");
                 freeMatrix(var->data.matrix);
                 var->data.matrix = NULL;
                 var->type = TYPE_NUMBER;
             }
-            var->data.value = value;
+            var->data.value = valor;
             return;
         }
         var = var->next;
     }
 
-    // Se a variável não existe, cria uma nova
+    // Caso a variável não exista, eh criada uma nova
     var = malloc(sizeof(Variable));
-    var->name = strdup(name);
+    var->name = strdup(nome);
     var->type = TYPE_NUMBER;
-    var->data.value = value;
+    var->data.value = valor;
     var->next = symbol_table[index];
     symbol_table[index] = var;
 }
 
 
-void set_variable_matrix(const char *name, Matrix *matrix) {
-    unsigned int index = hash(name);
+void setMatrix (const char *nome, Matrix *matrix) {
+    unsigned int index = hash(nome);
     Variable *var = symbol_table[index];
 
-    // Procura a variável na lista encadeada
+    // Confere se a variavel existe, e atualiza seu valor
     while (var != NULL) {
-        if (strcmp(var->name, name) == 0) {
+        if (strcmp(var->name, nome) == 0) {
             if(var->type == TYPE_NUMBER)var->type = TYPE_MATRIX;
             else freeMatrix(var->data.matrix); // Libera a matriz anterior
             var->data.matrix = NULL;
@@ -60,9 +59,9 @@ void set_variable_matrix(const char *name, Matrix *matrix) {
         var = var->next;
     }
 
-    // Se a variável não existe, cria uma nova
+    // Caso a variável não exista, eh criada uma nova
     var = malloc(sizeof(Variable));
-    var->name = strdup(name);
+    var->name = strdup(nome);
     var->type = TYPE_MATRIX;
     var->data.matrix = matrix;
     var->next = symbol_table[index];
@@ -70,13 +69,13 @@ void set_variable_matrix(const char *name, Matrix *matrix) {
 }
 
 
-bool get_variable_number(const char *name, double *value) {
-    unsigned int index = hash(name);
+bool getNumber (const char *nome, double *valor) {
+    unsigned int index = hash(nome);
     Variable *var = symbol_table[index];
 
     while (var != NULL) {
-        if (strcmp(var->name, name) == 0 && var->type == TYPE_NUMBER) {
-            *value = var->data.value;
+        if (strcmp(var->name, nome) == 0 && var->type == TYPE_NUMBER) {
+            *valor = var->data.value;
             return true;
         }
         var = var->next;
@@ -84,12 +83,12 @@ bool get_variable_number(const char *name, double *value) {
     return false;
 }
 
-bool get_variable_matrix(const char *name, Matrix **matrix) {
-    unsigned int index = hash(name);
+bool getMatrix (const char *nome, Matrix **matrix) {
+    unsigned int index = hash(nome);
     Variable *var = symbol_table[index];
 
     while (var != NULL) {
-        if (strcmp(var->name, name) == 0 && var->type == TYPE_MATRIX) {
+        if (strcmp(var->name, nome) == 0 && var->type == TYPE_MATRIX) {
             *matrix = var->data.matrix;
             return true;
         }
@@ -98,7 +97,7 @@ bool get_variable_matrix(const char *name, Matrix **matrix) {
     return false;
 }
 
-void show_symbols(){
+void showVariables () {
     for (int i = 0; i < TABLE_SIZE; i++) {
         Variable *var = symbol_table[i];
         while (var != NULL) {   
@@ -110,7 +109,7 @@ void show_symbols(){
     }
 }
 
-void free_symbol_table() {
+void freeVariables () {
     for (int i = 0; i < TABLE_SIZE; i++) {
         Variable *var = symbol_table[i];
         while (var != NULL) {
@@ -127,13 +126,13 @@ void free_symbol_table() {
     }
 }
 
-bool remove_variable(const char *name) {
-    unsigned int index = hash(name);
+bool removeVariable (const char *nome) {
+    unsigned int index = hash(nome);
     Variable *var = symbol_table[index];
     Variable *prev = NULL;
 
     while (var != NULL) {
-        if (strcmp(var->name, name) == 0) {
+        if (strcmp(var->name, nome) == 0) {
             if (prev == NULL) symbol_table[index] = var->next;
             else prev->next = var->next;
 

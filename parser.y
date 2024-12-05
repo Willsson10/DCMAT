@@ -110,7 +110,7 @@ input:
                                                                                         if (func_matrix) freeMatrix(func_matrix);
                                                                                         free_func_atual();
                                                                                         free_all_func();
-                                                                                        free_symbol_table(); 
+                                                                                        freeVariables(); 
                                                                                         yylex_destroy();
                                                                                         exit(0);
                                                                                     }
@@ -132,16 +132,16 @@ input:
     | SUM LPAREN IDENTIFIER COMMA   { 
                                         if (constanteSum) constanteSum = NULL;
                                         constanteSum = strdup($3);
-                                        size_t size = strlen(constanteSum) + strlen("__variavel_somatorio__") + 1;
+                                        size_t size = strlen(constanteSum) + strlen("--variavel_somatorio--") + 1;
                                         char* temp = realloc(constanteSum, size);
                                         if (!temp) {
                                             yyerror("Erro de alocação de memória");
                                             YYERROR;
                                         }
                                         constanteSum = temp;
-                                        strcat(constanteSum, "__variavel_somatorio__");
+                                        strcat(constanteSum, "--variavel_somatorio--");
 
-                                        set_variable_number(constanteSum, 0);
+                                        setNumber(constanteSum, 0);
                                     }   sumContinuation SEMICOLON         
     | MATRIX EQUAL LBRACKET matrix RBRACKET SEMICOLON                               {
                                                                                         if(func_matrix){
@@ -158,13 +158,13 @@ input:
                                                                                         Result* result = eval($3);
 
                                                                                         if (result->type == TYPE_NUM) {
-                                                                                            set_variable_number($1, (double)result->data.value);
+                                                                                            setNumber($1, (double)result->data.value);
                                                                                             printf("%.*f\n", get_float_precision(), get_num_value(result));
                                                                                         }
                                                                                         else if (result->type == TYPE_MAT && result->data.matrix) {
                                                                                             currentMatrix = copiaMatriz(result->data.matrix);
                                                                                             ajustaColunas(currentMatrix);
-                                                                                            set_variable_matrix($1, currentMatrix);
+                                                                                            setMatrix($1, currentMatrix);
                                                                                             showMatrix(currentMatrix);
                                                                                             currentMatrix = NULL;
                                                                                         }
@@ -174,7 +174,7 @@ input:
                                                                                     }
     | IDENTIFIER ASSIGN LBRACKET matrix RBRACKET SEMICOLON                          {
                                                                                         ajustaColunas(currentMatrix);
-                                                                                        set_variable_matrix($1, currentMatrix);
+                                                                                        setMatrix($1, currentMatrix);
                                                                                         showMatrix(currentMatrix);
                                                                                         currentMatrix = NULL;
                                                                                         free($1); 
@@ -183,10 +183,10 @@ input:
                                                                                         double valor;
                                                                                         Matrix* matrixAux = NULL;
 
-                                                                                        if (get_variable_number($1, &valor)) {
+                                                                                        if (getNumber($1, &valor)) {
                                                                                             printf("%s = %.*f\n", $1, get_float_precision(), get_num_value(eval(new_var($1, 0))));
                                                                                         }
-                                                                                        else if (get_variable_matrix($1, &matrixAux)) {
+                                                                                        else if (getMatrix($1, &matrixAux)) {
                                                                                             Result* result = eval(new_var($1, 1));
                                                                                             showMatrix(result->data.matrix);    
                                                                                             freeResult(result);
@@ -217,7 +217,7 @@ showOptions:
                     show_settings();
                     printf("\n");
                 }
-    | SYMBOLS   { show_symbols(); }  
+    | SYMBOLS   { showVariables(); }  
     | MATRIX    { 
                     if (func_matrix) showMatrix(func_matrix);
                     else printf("No Matrix defined!\n");
@@ -311,7 +311,7 @@ sumContinuation:
 
                                                             printf("\n%.*f\n\n", get_float_precision(), sum_func(constanteSum, lower, upper, $5));
                                                             if (constanteSum) {
-                                                                remove_variable(constanteSum);
+                                                                removeVariable(constanteSum);
                                                                 free(constanteSum);
                                                                 constanteSum = NULL;
                                                             }
@@ -319,7 +319,7 @@ sumContinuation:
                                                         }
                                                         else {
                                                             if (constanteSum) {
-                                                                remove_variable(constanteSum);
+                                                                removeVariable(constanteSum);
                                                                 free(constanteSum);
                                                                 constanteSum = NULL;
                                                             }
@@ -382,10 +382,10 @@ base:
                                         double valor;
                                         Matrix* matrixAux = NULL;
 
-                                        if (get_variable_number($1, &valor)) $$ = new_var($1, 0);
-                                        else if (get_variable_matrix($1, &matrixAux)) $$ = new_var($1, 1);
+                                        if (getNumber($1, &valor)) $$ = new_var($1, 0);
+                                        else if (getMatrix($1, &matrixAux)) $$ = new_var($1, 1);
                                         else {
-                                            printf("Variável não definida %s ", $1);
+                                            printf("Variável não definida %s \n", $1);
                                             YYERROR;
                                         }
                                         matrixAux = NULL;
@@ -421,7 +421,7 @@ baseFunction:
     | IDENTIFIER                    {
                                         double value;
 
-                                        if (!get_variable_number($1, &value)) {
+                                        if (!getNumber($1, &value)) {
                                             yyerror("Variável não definida, ou do tipo matriz.");
                                             YYERROR;
                                         }
@@ -497,25 +497,25 @@ baseSum:
                                 double valor;
 
                                 char* aux = strdup($1);
-                                size_t size = strlen(aux) + strlen("__variavel_somatorio__") + 1;
+                                size_t size = strlen(aux) + strlen("--variavel_somatorio--") + 1;
                                 char* temp = realloc(aux, size);
                                 if (!temp) {
                                     yyerror("Erro de alocação de memória");
                                     YYERROR;
                                 }
                                 aux = temp;
-                                strcat(aux, "__variavel_somatorio__");
+                                strcat(aux, "--variavel_somatorio--");
         
-                                if (get_variable_number(aux, &valor)) {
+                                if (getNumber(aux, &valor)) {
                                     $$ = new_var(aux, 0);
                                     variavel_somatorio = true;
                                 }
-                                else if (get_variable_number($1, &valor)) {
+                                else if (getNumber($1, &valor)) {
                                     $$ = new_var($1, 0);
                                 }
                                 else {
                                     if (constanteSum) {
-                                        remove_variable(constanteSum);
+                                        removeVariable(constanteSum);
                                         free(constanteSum);
                                         constanteSum = NULL;
                                     }
