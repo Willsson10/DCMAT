@@ -5,7 +5,7 @@ FLEX = flex
 CFLAGS = -Wall -Wextra -lm
 BISON_FLAGS = -d -Wcounterexamples
 FLEX_FLAGS = 
-EXEC = calc
+EXEC = dcmat
 
 # Arquivos fontes
 LEXER_SRC = lexer.l

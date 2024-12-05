@@ -16,8 +16,8 @@ int draw_axis = 1;       // 1 para ON, 0 para OFF
 int erase_plot = 1;      // 1 para ON, 0 para OFF
 int connect_dots = 0;    // 1 para ON, 0 para OFF
 
-AST_NODE* func_atual = NULL;
-AST_NODE* last_plotted_func = NULL; // Guarda a última função plotada
+NODE_DEFAULT* func_atual = NULL;
+NODE_DEFAULT* last_plotted_func = NULL; // Guarda a última função plotada
 
 Functions* funcs_storage = NULL;
 
@@ -89,7 +89,7 @@ void set_integral_steps(int valor){
     integral_steps = valor;
 }
 
-// void store_func(AST_NODE* func){
+// void store_func(NODE_DEFAULT* func){
 //     Functions* new_func = malloc(sizeof(Functions));
 //     new_func->func = func;
 //     new_func->next = funcs_storage;
@@ -97,14 +97,14 @@ void set_integral_steps(int valor){
 //     funcs_storage = new_func;
 // }
 
-// void store_func(AST_NODE* func){
+// void store_func(NODE_DEFAULT* func){
 //     if (func == NULL) {
 //         printf("Função inválida para armazenar.\n");
 //         return;
 //     }
 
 //     // Cria uma cópia da função usando copy_tree
-//     AST_NODE* copied_func = copy_tree(func);
+//     NODE_DEFAULT* copied_func = copy_tree(func);
 
 //     // Aloca e armazena a função copiada na lista de funções
 //     Functions* new_func = malloc(sizeof(Functions));
@@ -113,8 +113,8 @@ void set_integral_steps(int valor){
 //     funcs_storage = new_func;
 // }
 
-void store_func(AST_NODE* func){
-    AST_NODE* clone = copy_tree(func);
+void store_func(NODE_DEFAULT* func){
+    NODE_DEFAULT* clone = copy_tree(func);
     Functions* new_func = malloc(sizeof(Functions));
     new_func->func = clone;
     new_func->next = funcs_storage;
@@ -174,18 +174,18 @@ void free_func_atual(){
     }
 }
 
-void set_func_atual(AST_NODE* func){
+void set_func_atual(NODE_DEFAULT* func){
     //libera funcao antiga
     if(func_atual) free_tree(func_atual);
     func_atual = func;
 }
 
-AST_NODE* get_func_atual(){
+NODE_DEFAULT* get_func_atual(){
     return func_atual;
 }
 
 // Função para plotar a função matemática
-void plot_func(AST_NODE* func) {
+void plot_func(NODE_DEFAULT* func) {
     if (func == NULL) {
         func = last_plotted_func;
         if (func == NULL) {
@@ -300,7 +300,7 @@ void plot_func(AST_NODE* func) {
 }
 
 
-double integrate(double lower, double upper, AST_NODE* func) {
+double integrate(double lower, double upper, NODE_DEFAULT* func) {
     if (!func) {
         printf("Erro: Função inválida.\n");
         return 0.0;
@@ -345,7 +345,7 @@ double integrate(double lower, double upper, AST_NODE* func) {
 }
 
 
-double sum_func(const char* variable, int lower, int upper, AST_NODE* expr) {
+double sum_func(const char* variable, int lower, int upper, NODE_DEFAULT* expr) {
     if (!expr) {
         printf("Erro: Expressão inválida.\n");
         return 0.0;
@@ -357,7 +357,7 @@ double sum_func(const char* variable, int lower, int upper, AST_NODE* expr) {
         setNumber(variable, i); // Define o valor da variável de iteração
 
         Result* result = eval(expr); // Avalia a expressão
-        if (result->type != TYPE_NUM) {
+        if (result->type != NUM) {
             printf("Erro: A expressão não é numérica.\n");
             freeResult(result);
             return 0.0;
@@ -371,11 +371,13 @@ double sum_func(const char* variable, int lower, int upper, AST_NODE* expr) {
 }
 
 void about () {
+    printf("\n");
     printf("+----------------------------------------------+\n");
     printf("|                                              |\n");
     printf("|                 202200560538                 |\n");
     printf("|      Francisco Barone Gasparini Mugnani      |\n");
     printf("|                                              |\n");
     printf("+----------------------------------------------+\n");
+    printf("\n");
 }
 

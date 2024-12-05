@@ -8,92 +8,84 @@
 #include "symbol_table.h"
 
 typedef enum {
-    TYPE_DEFAULT,
-    TYPE_NUM,
-    TYPE_INT,
-    TYPE_OP,
-    TYPE_UNOP,
-    TYPE_TRIG,
+    NUM,
+    OPERATOR,
+    UN_OPERATOR,
+    TRIG,
     TYPE_X,
     TYPE_MAT,
-    TYPE_VAR
+    VARIABLE
 } Type;
 
 // Estrutura para variáveis
 typedef struct Result {
     Type type; // Tipo da variável: número ou matriz
     union {
-        int ivalue;
         double value;  // Para variáveis escalares
         Matrix *matrix; // Para variáveis do tipo matriz
     } data;
 } Result;
 
 // Definição das estruturas
-typedef struct ast_node {
+typedef struct node_default {
     Type type;
-} AST_NODE;
+} NODE_DEFAULT;
 
-typedef struct ast_num {
+typedef struct node_num {
     Type type;
     double valor;
-} AST_NUM;
+} NODE_NUM;
 
-typedef struct ast_int {
-    Type type;
-    int valor;
-}AST_INT;
-
-typedef struct ast_op {
+typedef struct node_operator {
     Type type;
     char operador;
-    AST_NODE *esq;
-    AST_NODE *dir;
-} AST_OP;
+    NODE_DEFAULT *esq;
+    NODE_DEFAULT *dir;
+} NODE_OPERATOR;
 
-typedef struct ast_UNop {
+typedef struct node_un_operator {
     Type type;
     char operador;
-    AST_NODE *espr;
-} AST_UNOP;
+    NODE_DEFAULT *espr;
+} NODE_UN_OPERATOR;
 
-typedef struct ast_trig {
+typedef struct node_trig {
     Type type;
     char funcao_trigonometrica;
-    AST_NODE* espr;
-}AST_TRIG;
+    NODE_DEFAULT* espr;
+} NODE_TRIG;
 
-typedef struct ast_x {
+typedef struct node_x {
     Type type;
     double* value;
-}AST_X;
+} NODE_X;
 
-typedef struct ast_matrix {
+typedef struct node_matrix {
     Type type;
     Matrix* matrix;
-}AST_MATRIX;
+} NODE_MATRIX;
 
 // 0 = NUMBER, 1 = MATRIX, 2 = UNDEF
-typedef struct var {
+typedef struct node_variable {
     Type type;
     int var_type;
     char* nome;
-}AST_VAR;
+} NODE_VARIABLE;
 
-AST_NODE* new_num(double val);
-AST_NODE* new_int(int val);
-AST_NODE* new_op(AST_NODE* esq, char op, AST_NODE* dir);
-AST_NODE* new_UNop(char op,AST_NODE* espr);
-AST_NODE* new_trig(char funcao,AST_NODE* espr);
-AST_NODE* new_X();
-AST_NODE* new_matrix(Matrix* mat);
-AST_NODE* new_var(char* nome, int var_type);
-void free_tree(AST_NODE *node);
+NODE_DEFAULT* new_num(double val);
+NODE_DEFAULT* new_int(int val);
+NODE_DEFAULT* new_op(NODE_DEFAULT* esq, char op, NODE_DEFAULT* dir);
+NODE_DEFAULT* new_UNop(char op,NODE_DEFAULT* espr);
+NODE_DEFAULT* new_trig(char funcao,NODE_DEFAULT* espr);
+NODE_DEFAULT* new_X();
+NODE_DEFAULT* new_matrix(Matrix* mat);
+NODE_DEFAULT* new_var(char* nome, int var_type);
+void free_tree(NODE_DEFAULT *node);
 void change_X_value(double new_value);
 double get_X_value();
 void freeResult(Result *result);
 
 double get_num_value(Result* node);
-AST_NODE* apply_sign_to_value(AST_NODE* node);
+NODE_DEFAULT* apply_sign_to_value(NODE_DEFAULT* node);
 
 #endif 

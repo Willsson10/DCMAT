@@ -3,8 +3,8 @@
 
 #include "ast.h"
 
-void rpn_eval(AST_NODE *node);
-Result* eval(AST_NODE *node);
+void rpn_eval(NODE_DEFAULT *node);
+Result* eval(NODE_DEFAULT *node);
 
-AST_NODE* copy_tree(AST_NODE* node);
+NODE_DEFAULT* copy_tree(NODE_DEFAULT* node);
 #endif

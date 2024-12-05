@@ -26,7 +26,7 @@ bool variavel_somatorio = false;
     double *row;
     double val;
     char* name;
-    AST_NODE* node;
+    NODE_DEFAULT* node;
 }
 
 %token <val> NUMBER
@@ -157,7 +157,7 @@ input:
     | IDENTIFIER ASSIGN expression SEMICOLON                                        {
                                                                                         Result* result = eval($3);
 
-                                                                                        if (result->type == TYPE_NUM) {
+                                                                                        if (result->type == NUM) {
                                                                                             setNumber($1, (double)result->data.value);
                                                                                             printf("%.*f\n", get_float_precision(), get_num_value(result));
                                                                                         }
@@ -200,7 +200,7 @@ input:
     | expression                                                                    {  
                                                                                         Result* result = eval($1);
 
-                                                                                        if (result->type == TYPE_NUM) {
+                                                                                        if (result->type == NUM) {
                                                                                             printf("%.*f\n", get_float_precision(),result->data.value);
                                                                                         }
                                                                                         else if (result->type == TYPE_MAT && result->data.matrix) {
